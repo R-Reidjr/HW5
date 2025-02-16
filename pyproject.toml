@@ -1,0 +1,26 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "align_HW5"
+version = "0.1.0"  # Initial version
+description = "Needleman-Wunsch global sequence alignment implementation"
+authors = [
+    {name = "Rashad Reid jr", email = "rashad.reid@ucsf.edu"},
+]
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy",
+    "scipy",
+    "pytest"
+]
+
+[tool.flit.module]
+name = "align"
