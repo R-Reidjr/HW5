@@ -99,80 +99,7 @@ class NeedlemanWunsch:
         return dict_sub
 
     def align(self, seqA: str, seqB: str) -> Tuple[float, str, str]:
-        """
-        TODO
         
-        This function performs global sequence alignment of two strings
-        using the Needleman-Wunsch Algorithm
-        
-        Parameters:
-        	seqA: str
-         		the first string to be aligned
-         	seqB: str
-         		the second string to be aligned with seqA
-         
-        Returns:
-         	(alignment score, seqA alignment, seqB alignment) : Tuple[float, str, str]
-         		the score and corresponding strings for the alignment of seqA and seqB
-        """
-        """# Resetting alignment in case method is called more than once
-        self.seqA_align = ""
-        self.seqB_align = ""
-
-        # Resetting alignment score in case method is called more than once
-        self.alignment_score = 0
-
-        # Initializing sequences for use in backtrace method
-        self._seqA = seqA
-        self._seqB = seqB
-        
-        # TODO: Initialize matrix private attributes for use in alignment
-        # create matrices for alignment scores, gaps, and backtracing
-        
-        n, m = len(seqA), len(seqB) # Getting the dimensions of the matricies
-        self._gapA_matrix = np.full((n+1, m+1), -np.inf) # Initializing the gapA matrix with negative infinities
-        self._gapB_matrix = np.full((n+1, m+1), -np.inf) # Initializing the gapB matrix with negative infinities
-        self._align_matrix = np.full((n+1, m+1), -np.inf) # Initializing the sequence alignment matrix infinities
-        
-        
-        self._align_matrix[0, 0] = 0.0 # Set initial score for first entry
-
-        #  Set initial score for first row of gapA matrix
-        for j in range(1, m+1):
-            self._gapA_matrix[0, j] = self.gap_open + (j-1) * self.gap_extend
-
-        # Set initial score for first column of gapB matrix
-        for i in range(1, n+1):
-            self._gapB_matrix[i, 0] = self.gap_open + (i-1) * self.gap_extend
-
-        # TODO: Implement global alignment here
-
-        # Trying to fill the matricies during alignment
-        for i in range(1, n+1):
-            for j in range(1, m+1):
-                match_score = self.sub_dict[(seqA[i-1], seqB[j-1])] # Loading in the scores from the sub_dict
-                align_score = self._align_matrix[i-1][j-1] + match_score # Score for alligning sequence A to sequence B 
-        		    
-                gapA_open = self._align_matrix[i][j-1] + self.gap_open # Score for inserting a gap into sequence A 
-                gapA_extend = self._gapA_matrix[i][j-1] + self.gap_extend # Scoring for extending the gap in sequence A
-                gapA_score = max(gapA_open, gapA_extend) # Storing the maximum score between adding or extending a gap
-
-                gapB_open = self._align_matrix[i-1][j] + self.gap_open # Score for inserting a gap into sequence B
-                gapB_extend = self._gapB_matrix[i-1][j] + self.gap_extend # Scoring for extending the gap in sequence B
-                gapB_score = max(gapB_open, gapB_extend) # Storing the maximum score between adding or extending a gap
-
-                # Updating gap matricies
-                self._gapA_matrix[i][j] = gapA_score
-                self._gapB_matrix[i][j] = gapB_score
-
-                # Update main alignment matrix
-                self._align_matrix[i][j] = max(align_score, gapA_score, gapB_score)
-
-        self.alignment_score = self._align_matrix[n][m]
-
-        return self._backtrace()"""
-    
-
         self.seqA_align = ""
         self.seqB_align = ""
         self.alignment_score = 0
@@ -192,11 +119,11 @@ class NeedlemanWunsch:
 
         # Initialize gapA matrix (gaps in seqA)
         for j in range(1, m+1):
-            self._gapA_matrix[0, j] = self.gap_open + (j) * self.gap_extend  # Note: (j) instead of (j-1)
+            self._gapA_matrix[0, j] = self.gap_open + (j) * self.gap_extend 
 
         # Initialize gapB matrix (gaps in seqB)
         for i in range(1, n+1):
-            self._gapB_matrix[i, 0] = self.gap_open + (i) * self.gap_extend  # Note: (i) instead of (i-1)
+            self._gapB_matrix[i, 0] = self.gap_open + (i) * self.gap_extend
 
         # Set first row and column of _align_matrix from gapA and gapB
         for j in range(1, m+1):
