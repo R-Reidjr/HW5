@@ -15,7 +15,7 @@ def test_nw_alignment():
     seq1, _ = read_fasta("./data/test_seq1.fa")
     seq2, _ = read_fasta("./data/test_seq2.fa")
 
-    sub_matrix_file = 'HW5-NW/substitution_matrices/BLOSUM62.mat'
+    sub_matrix_file = 'substitution_matrices/BLOSUM62.mat'
     gap_open= -10
     gap_extend = -1
 
@@ -69,7 +69,7 @@ def test_nw_backtrace():
     expected_seqB_allignment = 'M---QLIRHP'
     expected_allignment_score = 17.0
     
-    sub_matrix_file = 'HW5-NW/substitution_matrices/BLOSUM62.mat'
+    sub_matrix_file = 'substitution_matrices/BLOSUM62.mat'
     gap_open= -10
     gap_extend = -1
 
